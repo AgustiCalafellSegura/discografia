@@ -6,42 +6,47 @@
  * Time: 16:30
  */
 
+namespace App\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Class Song
- * @Entity
- * @Table(name="song")
+ * @package App\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="song")
  */
 class Song
 {
     /**
      * @var integer
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
      */
     private $id;
 
     /**
      * @var string
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $name;
 
     /**
      * @var integer
-     * @Column(type="integer")
+     * @ORM\Column(type="integer")
      */
     private $duration;
 
     /**
      * @var integer
-     * @Column(type="integer")
+     * @ORM\Column(type="integer")
      */
     private $stars;
 
     /**
      * @var array
-     * @ManyToOne(targetEntity="Album", inversedBy="songs")
+     * @ORM\ManyToOne(targetEntity="Album", inversedBy="songs")
      */
     private $album;
 
@@ -52,11 +57,6 @@ class Song
     {
         return $this->id;
     }
-
-    /**
-     * @param int $id
-     * @return Song
-     */
 
     /**
      * @return array

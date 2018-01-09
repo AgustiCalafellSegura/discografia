@@ -6,30 +6,35 @@
  * Time: 16:29
  */
 
+namespace App\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Class Artist
- * @Entity
- * @Table(name="artist")
+ * @package App\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="artist")
  */
 class Artist
 {
     /**
      * @var integer
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
      */
     private $id;
 
     /**
      * @var string
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $name;
 
     /**
      * @var array
-     * @OneToMany(targetEntity="Album", mappedBy="artist", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Album", mappedBy="artist", cascade={"persist"})
      */
     private $albums;
 

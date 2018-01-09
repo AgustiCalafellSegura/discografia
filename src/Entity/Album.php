@@ -6,53 +6,53 @@
  * Time: 16:25
  */
 
-namespace App;
+namespace App\Entity;
 
-use Symfony\Component\Console\Output\Output as Output;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Album
- * @package App
- * @Entity
- * @Table(name="album")
+ * @package App\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="album")
  */
 class Album
 {
     /**
      * @var integer
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
      */
     private $id;
 
     /**
      * @var Artist
-     * @ManyToOne(targetEntity="Artist", inversedBy="albums")
+     * @ORM\ManyToOne(targetEntity="Artist", inversedBy="albums")
      */
     private $artist;
 
     /**
      * @var string
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $title;
 
     /**
      * @var string
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $genere;
 
     /**
      * @var integer
-     * @Column(type="integer")
+     * @ORM\Column(type="integer")
      */
     private $year;
 
     /**
      * @var array
-     * @OneToMany(targetEntity="Song", mappedBy ="album", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Song", mappedBy ="album", cascade={"persist"})
      */
     private $songs;
 
@@ -189,18 +189,5 @@ class Album
     public function toString()
     {
         return 'Album: '.$this->getTitle().' Genere:'.$this->getGenere().' Year:'.$this->getYear().' ID: '.$this->getId();
-    }
-
-    public function printSongs(Output $output)
-    {
-        if(count($this->songs) != 0){
-            /** @var Song $song */
-            foreach ($this->songs as $song)
-            {
-                $output->writeln($song->toString());
-            }
-        } else {
-            $output->writeln('Not songs');
-        }
     }
 }
