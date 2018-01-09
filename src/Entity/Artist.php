@@ -107,14 +107,4 @@ class Artist
     {
         return 'Artist: '.$this->getName().' ID: '.$this->getId();
     }
-
-    public function printArtist(Output $output)
-    {
-        /** @var Album $album */
-        foreach ($this->albums as $album)
-        {
-            $output->writeln($album->toString());
-            $album->printSongs($output);
-        }
-    }
 }
