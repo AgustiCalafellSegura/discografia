@@ -1,5 +1,9 @@
 {% extends "base.html.twig" %}
 
+{% block title %}
+    Llistat d'artistes
+{% endblock %}
+
 {% block body %}
     <h1>Artist List</h1>
     <table>
@@ -15,9 +19,16 @@
             <tr>
                 <td>{{ artist.id }}</td>
                 <td>{{ artist.name }}</td>
-                <td></td>
+                <td>
+                    <a href="{{ path('app_artist_update', {id: artist.id}) }}">Actualitzar</a>
+                    <a href="{{ path('app_artist_delete', {id: artist.id}) }}">Esborrar</a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <hr>
+    <p>
+        <a href="{{ path('app_artist_create') }}">+ Crear un artiste nou</a>
+    </p>
 {% endblock %}
