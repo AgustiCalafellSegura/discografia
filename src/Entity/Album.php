@@ -13,8 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Album
  * @package App\Entity
- * @ORM\Entity
- * @ORM\Table(name="album")
+ * @ORM\Entity(repositoryClass="App\Repository\AlbumRepository")
+ * @ORM\Table(name="Albums")
  */
 class Album
 {
@@ -186,8 +186,8 @@ class Album
     /**
      * @return string
      */
-    public function toString()
+    public function __toString()
     {
-        return 'Album: '.$this->getTitle().' Genere:'.$this->getGenere().' Year:'.$this->getYear().' ID: '.$this->getId();
+        return $this->getTitle();
     }
 }

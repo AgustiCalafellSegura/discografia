@@ -22,12 +22,43 @@ class ArtistController extends Controller
      */
     public function listing()
     {
-        $artists = $this->getDoctrine()->getRepository('App:Artist')->findAll();
+        $artists = $this->getDoctrine()->getRepository('App:Artist')->findAllSortedByName();
 
         return $this->render('artistList.html.twig', array(
             "artists" => $artists,
 
         ));
+    }
 
+    public function create(Request $request)
+    {
+        $artist = new Artist();
+        $form = $this->createForm(ArtistFormType::class, $artist);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $this->getDoctrine()->getManager()->persist($artist);
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('app_artist_list');
+        }
+
+        return $this->render('artistCreate.html.twig', array(
+            'form' => $form->createView()
+        ));
+     }
+
+    public function update(Request $request, $id)
+    {
+        $artist = $this->getDoctrine()->getRepository('App:Artist')->find($id);
+        $form = $this->createForm(ArtistFormType::class, $artist);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('app_artist_list');
+        }
+
+        return $this->render('artistCreate.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 }

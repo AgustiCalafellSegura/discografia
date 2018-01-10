@@ -5,30 +5,35 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Artist List</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for artist in artists %}
-            <tr>
-                <td>{{ artist.id }}</td>
-                <td>{{ artist.name }}</td>
-                <td>
-                    <a href="{{ path('app_artist_update', {id: artist.id}) }}">Actualitzar</a>
-                    <a href="{{ path('app_artist_delete', {id: artist.id}) }}">Esborrar</a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <hr>
-    <p>
-        <a href="{{ path('app_artist_create') }}">+ Crear un artiste nou</a>
-    </p>
+    <div class="row">
+        <div class="col-xs-10">
+            <h1>Artistes</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for artist in artists %}
+                    <tr>
+                    <td>{{ artist.id }}</td>
+                    <td>{{ artist.name }}</td>
+                    <td>
+                        <a href="{{ path('app_artist_update', {id: artist.id}) }}">Actualitzar</a>
+                        <a href="{{ path('app_artist_delete', {id: artist.id}) }}">Esborrar</a>
+                    </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <hr>
+            <p>
+                <a href="{{ path('app_artist_create') }}">+ Crear un artiste nou</a>
+            </p>
+
+        </div>
+    </div>
 {% endblock %}

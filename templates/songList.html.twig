@@ -5,41 +5,39 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Song List</h1>
-
-    {% if song is not null %}
-        <table>
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>duration</th>
-                <th>stars</th>
-                <th>actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for song in songs %}
-                <ul>
-                    {% for song in songs %}
-                        <li>{{ song.name }} <a href="{{ path('app_lucky_song', {id: song.id}) }}">Cançó {{ song.id }}</a></li>
-                    {% endfor %}
-                </ul>
+    <div class="row">
+        <div class="col-xs-10">
+            <h1>Cançons</h1>
+            <table class="table">
+                <thead>
                 <tr>
-                    <td>{{ song.id }}</td>
-                    <td>{{ song.name }}</td>
-                    <td>{{ song.duration }}</td>
-                    <td>{{ song.stars }}</td>
-                    <td></td>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>duration</th>
+                        <th>stars</th>
+                        <th>actions</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for songs in songs %}
+                    <tr>
+                        <td>{{ song.id }}</td>
+                        <td>{{ song.name }}</td>
+                        <td>{{ song.duration }}</td>
+                        <td>{{ song.stars }}</td>
+                        <td>
+                            <a href="{{ path('app_songs_update', {id: songs.id}) }}">Actualitzar</a>
+                            <a href="{{ path('app_songs_delete', {id: songs.id}) }}">Esborrar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <hr>
+            <p>
+                <a href="{{ path('app_songs_create') }}">+ Crear una cançó nova</a>
+            </p>
 
-    {% else %}
-        <p>No hi ha dades per mostrar</p>
-
-    {% endif %}
-        <a href="{{ path('app_lucky_songslist') }}">Botó</a>
-
+        </div>
+    </div>
 {% endblock %}

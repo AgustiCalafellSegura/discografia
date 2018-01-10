@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Esborrat d'àlbums
+{% endblock %}
+
+{% block body%}
+    <p>Cuidadín vas a esborrar 'àlbum {{ album.title }}. Estàs segur?</p>
+    <p><a href="{{ path('app_albums_listing') }}">Cancelar</a></p>
+    <p><a href="{{ path('app_albums_deleteconfirm', {id: album.id}) }}">Acceptar</a></p>
+{% endblock %}
