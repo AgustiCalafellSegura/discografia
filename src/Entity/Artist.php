@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Artist
  * @package App\Entity
- * @@ORM\Entity(repositoryClass="App\Repository\ArtistRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ArtistRepository")
  * @ORM\Table(name="Artists")
  */
 class Artist
