@@ -9,7 +9,10 @@
 namespace App\Controller;
 
 
+use App\Entity\Artist;
+use App\Form\Type\ArtistFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 

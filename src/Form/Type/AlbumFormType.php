@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AlbumFormType extends AbstractType
 {
@@ -16,7 +17,7 @@ class AlbumFormType extends AbstractType
     {
         $builder
             ->add('title')
-            add(
+            ->add(
                 'artist',
                 EntityType::class,
                 array(
