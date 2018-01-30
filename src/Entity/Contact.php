@@ -4,52 +4,64 @@ namespace App\Entity;
 
 class Contact
 {
-    private $nom;
+    /**
+     * @var string
+     */
+    private $name;
 
-    private $telefon;
+    /**
+     * @var string
+     */
+    private $phone;
 
+    /**
+     * @var string
+     */
     private $email;
 
-    private $missatge;
+    /**
+     * @var string
+     */
+    private $message;
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
-     * @param mixed $nom
+     * @param string $name
      * @return Contact
      */
-    public function setNom($nom)
+    public function setName(string $name)
     {
-        $this->nom = $nom;
+        $this->name = $name;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getTelefon()
+    public function getPhone()
     {
-        return $this->telefon;
+        return $this->phone;
     }
 
     /**
-     * @param mixed $telefon
+     * @param string $phone
      * @return Contact
      */
-    public function setTelefon($telefon)
+    public function setPhone(string $phone)
     {
-        $this->telefon = $telefon;
+        $this->phone = $phone;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getEmail()
     {
@@ -57,31 +69,30 @@ class Contact
     }
 
     /**
-     * @param mixed $email
+     * @param string $email
      * @return Contact
      */
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getMissatge()
+    public function getMessage()
     {
-        return $this->missatge;
+        return $this->message;
     }
 
     /**
-     * @param mixed $missatge
+     * @param string $message
      * @return Contact
      */
-    public function setMissatge($missatge)
+    public function setMessage(string $message)
     {
-        $this->missatge = $missatge;
+        $this->message = $message;
         return $this;
     }
-
 }

@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Form\Type\ContactFormType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -13,6 +12,10 @@ class ContactController extends Controller
 {
     /**
      * @Route("/contact/")
+     * @param Request $request
+     * @param \Swift_Mailer $mailer
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function contactForm(Request $request, \Swift_Mailer $mailer)
     {
@@ -22,15 +25,15 @@ class ContactController extends Controller
 
         if($form->isSubmitted() && $form->isValid()){
             $message = (new \Swift_Message('Consulta musical'))
-                ->setFrom('grijardo@gmail.com')
-                ->setTo('info@rubenhierro.com')
-                ->setBody('El contacte: '.$contact->getNom().' amb el telèfon: '.$contact->getTelefon().' i email: '.$contact->getEmail().' diu: '.$contact->getMissatge());
+                ->setFrom($this->getParameter('admin_mail'))
+                ->setTo($this->getParameter('admin_mail'))
+                ->setBody('El contacte: '.$contact->getName().' amb el telèfon: '.$contact->getPhone().' i email: '.$contact->getEmail().' diu: '.$contact->getMessage());
             $mailer->send($message);
 
         }
 
         return $this->render('contactCreate.html.twig', array(
-            'form' => $form->createView()
+            'contactForm' => $form->createView()
         ));
     }
 }
