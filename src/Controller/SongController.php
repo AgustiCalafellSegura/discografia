@@ -66,7 +66,7 @@ class SongController extends Controller
         $song = $this->getDoctrine()->getRepository('App:Song')->find($id);
         $this->getDoctrine()->getManager()->remove($song);
         $this->getDoctrine()->getManager()->flush();
-        return $this->redirectToRoute('app_songs_listing');
+        return $this->redirectToRoute('app_song_listing');
 
     }
 }

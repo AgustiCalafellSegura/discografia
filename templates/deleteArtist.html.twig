@@ -6,6 +6,6 @@
 
 {% block body%}
     <p>Cuidadín vas a esborrar l'artista {{ artist.name }}. Estàs segur?</p>
-    <p><a href="{{ path('app_artist_list') }}">Cancelar</a></p>
+    <p><a href="{{ path('app_artist_listing') }}">Cancelar</a></p>
     <p><a href="{{ path('app_artist_deleteconfirm', {id: artist.id}) }}">Acceptar</a></p>
 {% endblock %}

@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArtistController extends Controller
 {
     /**
-     * @Route("/artist/list")
+     * @Route("/artists/list")
      *
      * @return Response
      */
@@ -33,6 +33,9 @@ class ArtistController extends Controller
         ));
     }
 
+    /**
+     * @Route("/artists/create")
+     */
     public function create(Request $request)
     {
         $artist = new Artist();
@@ -42,7 +45,7 @@ class ArtistController extends Controller
         if($form->isSubmitted() && $form->isValid()){
             $this->getDoctrine()->getManager()->persist($artist);
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('app_artist_list');
+            return $this->redirectToRoute('app_artist_listing');
         }
 
         return $this->render('artistCreate.html.twig', array(
@@ -50,6 +53,9 @@ class ArtistController extends Controller
         ));
      }
 
+    /**
+     * @Route("/artists/{id}/update")
+     */
     public function update(Request $request, $id)
     {
         $artist = $this->getDoctrine()->getRepository('App:Artist')->find($id);
@@ -57,11 +63,35 @@ class ArtistController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('app_artist_list');
+            return $this->redirectToRoute('app_artist_listing');
         }
 
         return $this->render('artistCreate.html.twig', array(
             'form' => $form->createView()
         ));
+    }
+
+    /**
+     * @Route("/artists/{id}/delete")
+     */
+    public function delete($id)
+    {
+        $artist = $this->getDoctrine()->getRepository('App:Artist')->find($id);
+
+        return $this->render('deleteArtist.html.twig', array(
+            'artist' => $artist,
+        ));
+    }
+
+    /**
+     * @Route("/artists/{id}/delete-confirm")
+     */
+    public function deleteConfirm($id)
+    {
+        $artist = $this->getDoctrine()->getRepository('App:Artist')->find($id);
+        $this->getDoctrine()->getManager()->remove($artist);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('app_artist_listing');
+
     }
 }
