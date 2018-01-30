@@ -15,15 +15,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for albums in album %}
+                {% for album in albums %}
                     <tr>
                         <td>{{ album.id }}</td>
                         <td>{{ album.title }}</td>
                         <td>{{ album.genere }}</td>
                         <td>{{ album.year }}</td>
                         <td>
-                            <a href="{{ path('app_albums_update', {id: albums.id}) }}">Actualitzar</a>
-                            <a href="{{ path('app_albums_delete', {id: albums.id}) }}">Esborrar</a>
+                            <a href="{{ path('app_album_update', {id: album.id}) }}">Actualitzar</a>
+                            <a href="{{ path('app_album_delete', {id: album.id}) }}">Esborrar</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -31,7 +31,7 @@
             </table>
                 <hr>
                 <p>
-                    <a href="{{ path('app_albums_create') }}">+ Crear un àlbum nou</a>
+                    <a href="{{ path('app_album_create') }}">+ Crear un àlbum nou</a>
                 </p>
 
         </div>

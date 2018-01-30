@@ -26,8 +26,8 @@
                         <td>{{ song.duration }}</td>
                         <td>{{ song.stars }}</td>
                         <td>
-                            <a href="{{ path('app_songs_update', {id: songs.id}) }}">Actualitzar</a>
-                            <a href="{{ path('app_songs_delete', {id: songs.id}) }}">Esborrar</a>
+                            <a href="{{ path('app_song_update', {id: songs.id}) }}">Actualitzar</a>
+                            <a href="{{ path('app_song_delete', {id: songs.id}) }}">Esborrar</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -35,7 +35,7 @@
             </table>
             <hr>
             <p>
-                <a href="{{ path('app_songs_create') }}">+ Crear una cançó nova</a>
+                <a href="{{ path('app_song_create') }}">+ Crear una cançó nova</a>
             </p>
 
         </div>
