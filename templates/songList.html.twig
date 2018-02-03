@@ -19,15 +19,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for songs in songs %}
+                {% for song in songs %}
                     <tr>
                         <td>{{ song.id }}</td>
                         <td>{{ song.name }}</td>
                         <td>{{ song.duration }}</td>
                         <td>{{ song.stars }}</td>
                         <td>
-                            <a href="{{ path('app_song_update', {id: songs.id}) }}">Actualitzar</a>
-                            <a href="{{ path('app_song_delete', {id: songs.id}) }}">Esborrar</a>
+                            <a href="{{ path('app_song_update', {id: song.id}) }}">Actualitzar</a>
+                            <a href="{{ path('app_song_delete', {id: song.id}) }}">Esborrar</a>
                         </td>
                     </tr>
                 {% endfor %}

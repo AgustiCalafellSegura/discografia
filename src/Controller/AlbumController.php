@@ -8,8 +8,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Song;
-use App\Form\Type\SongFormType;
+use App\Entity\Album;
+use App\Form\Type\AlbumFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AlbumController extends Controller
 {
     /**
-     * @Route("/album/list")
+     * @Route("/albums/list")
      *
      * @return Response
      */
@@ -37,18 +37,18 @@ class AlbumController extends Controller
      */
     public function create(Request $request)
     {
-        $song = new Song();
-        $form = $this->createForm(SongFormType::class, $song);
+        $album = new Album();
+        $form = $this->createForm(AlbumFormType::class, $album);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $this->getDoctrine()->getManager()->persist($song);
+            $this->getDoctrine()->getManager()->persist($album);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('app_songs_listing');
+            return $this->redirectToRoute('app_album_listing');
         }
 
-        return $this->render('songCreate.html.twig', array(
+        return $this->render('albumCreate.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -58,17 +58,17 @@ class AlbumController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $song = $this->getDoctrine()->getRepository('App:Song')->find($id);
-        $form = $this->createForm(SongFormType::class, $song);
+        $album = $this->getDoctrine()->getRepository('App:Album')->find($id);
+        $form = $this->createForm(AlbumFormType::class, $album);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('app_songs_listing');
+            return $this->redirectToRoute('app_album_listing');
         }
 
-        return $this->render('songCreate.html.twig', array(
+        return $this->render('albumCreate.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -93,6 +93,6 @@ class AlbumController extends Controller
             $this->getDoctrine()->getManager()->remove($album);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('app_albums_listing');
+            return $this->redirectToRoute('app_album_listing');
     }
 }

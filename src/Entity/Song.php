@@ -34,7 +34,7 @@ class Song
 
     /**
      * @var integer
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $duration;
 
@@ -45,7 +45,7 @@ class Song
     private $stars;
 
     /**
-     * @var array
+     * @var Album
      * @ORM\ManyToOne(targetEntity="Album", inversedBy="songs")
      */
     private $album;
@@ -56,24 +56,6 @@ class Song
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return array
-     */
-    public function getAlbum()
-    {
-        return $this->album;
-    }
-
-    /**
-     * @param array $album
-     * @return Song
-     */
-    public function setAlbum($album)
-    {
-        $this->album = $album;
-        return $this;
     }
 
     /**
@@ -88,7 +70,7 @@ class Song
      * @param string $name
      * @return Song
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
         return $this;
@@ -106,7 +88,7 @@ class Song
      * @param int $duration
      * @return Song
      */
-    public function setDuration($duration)
+    public function setDuration(int $duration)
     {
         $this->duration = $duration;
         return $this;
@@ -124,12 +106,29 @@ class Song
      * @param int $stars
      * @return Song
      */
-    public function setStars($stars)
+    public function setStars(int $stars)
     {
         $this->stars = $stars;
         return $this;
     }
 
+    /**
+     * @return Album
+     */
+    public function getAlbum()
+    {
+        return $this->album;
+    }
+
+    /**
+     * @param Album $album
+     * @return Song
+     */
+    public function setAlbum(Album $album)
+    {
+        $this->album = $album;
+        return $this;
+    }
 
     /**
      * @return string

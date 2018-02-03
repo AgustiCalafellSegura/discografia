@@ -9,6 +9,8 @@
 namespace App\Controller;
 
 
+use App\Entity\Song;
+use App\Form\Type\SongFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SongController extends Controller
 {
     /**
-     * @Route("/song/list")
+     * @Route("/songs/list")
      *
      * @return Response
      */
@@ -35,7 +37,19 @@ class SongController extends Controller
      */
     public function create(Request $request)
     {
+        $song = new Song();
+        $form = $this->createForm(SongFormType::class, $song);
+        $form->handleRequest($request);
 
+        if($form->isSubmitted() && $form->isValid()){
+            $this->getDoctrine()->getManager()->persist($song);
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('app_artist_listing');
+        }
+
+        return $this->render('songCreate.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     /**
@@ -43,7 +57,17 @@ class SongController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $song = $this->getDoctrine()->getRepository('App:Song')->find($id);
+        $form = $this->createForm(SongFormType::class, $song);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('app_song_listing');
+        }
 
+        return $this->render('songCreate.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     /**

@@ -29,6 +29,7 @@ class Album
     /**
      * @var Artist
      * @ORM\ManyToOne(targetEntity="Artist", inversedBy="albums")
+     * @ORM\JoinColumn(name="artist_id", referencedColumnName="id")
      */
     private $artist;
 
@@ -81,7 +82,7 @@ class Album
      * @param Artist $artist
      * @return Album
      */
-    public function setArtist($artist)
+    public function setArtist(Artist $artist)
     {
         $this->artist = $artist;
         return $this;
@@ -99,7 +100,7 @@ class Album
      * @param string $title
      * @return Album
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
         return $this;
@@ -117,14 +118,14 @@ class Album
      * @param string $genere
      * @return Album
      */
-    public function setGenere($genere)
+    public function setGenere(string $genere)
     {
         $this->genere = $genere;
         return $this;
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getYear()
     {
@@ -132,10 +133,10 @@ class Album
     }
 
     /**
-     * @param string $year
+     * @param int $year
      * @return Album
      */
-    public function setYear($year)
+    public function setYear(int $year)
     {
         $this->year = $year;
         return $this;
@@ -153,15 +154,12 @@ class Album
      * @param array $songs
      * @return Album
      */
-    public function setSongs($songs)
+    public function setSongs(array $songs)
     {
         $this->songs = $songs;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
 
 
     /**
@@ -180,7 +178,12 @@ class Album
      */
     public function removeSong($song)
     {
-        $this->songs = array_diff($song);
+        foreach ($this->songs as $itemSong)
+        {
+            if($itemSong->getName()){
+                $this->songs = array_diff($song);
+            }
+        }
     }
 
     /**

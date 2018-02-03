@@ -6,6 +6,6 @@
 
 {% block body%}
     <p>Cuidadín vas a esborrar la cançó {{ song.name }}. Estàs segur?</p>
-    <p><a href="{{ path('app_songs_listing') }}">Cancelar</a></p>
-    <p><a href="{{ path('app_songs_deleteconfirm', {id: song.id}) }}">Acceptar</a></p>
+    <p><a href="{{ path('app_song_listing') }}">Cancelar</a></p>
+    <p><a href="{{ path('app_song_deleteconfirm', {id: song.id}) }}">Acceptar</a></p>
 {% endblock %}
